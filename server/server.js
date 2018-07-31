@@ -6,12 +6,12 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // Route includes
-const postRouter = require('./routes/post.router');
+const imageRouter = require('./routes/image.router');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api/post', postRouter);
+app.use('/api/image', imageRouter);
 
 // Serve static files
 app.use(express.static('build'));

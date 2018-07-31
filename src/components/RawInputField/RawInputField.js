@@ -17,7 +17,7 @@ class RawInputField extends Component {
     const file = event.target.files[0];
     const data = new FormData();
     data.append('file', file);
-    axios.post('api/post', data, { headers: {
+    axios.post('api/image', data, { headers: {
         'accept': 'application/json',
         'Accept-Language': 'en-US,en;q=0.8',
         'Content-Type': file.type,

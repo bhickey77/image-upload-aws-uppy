@@ -6,6 +6,8 @@ const upload = multer({ dest: '../uploads/' });
 const uploadPost = require('../modules/uploadPost');
 
 router.post('/', upload.single('file'), (req, res) => {
+    console.log('hit POST /api/image/');
+    console.log(uploadPost);
     uploadPost(req, res);
 });
 
