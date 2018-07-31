@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// MATERIAL UI
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import UploadBox from '../UploadBox/UploadBox';
-
-//UPLOAD STAGES
-import UploadStage1 from '../UploadStage1/UploadStage1';
-import UploadStage2 from '../UploadStage2/UploadStage2';
-
 //AWS
 const AWS = require('aws-sdk');
 const BUCKET_NAME = process.env.bucket_name;

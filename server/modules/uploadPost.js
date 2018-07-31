@@ -8,7 +8,7 @@ const tempfile = require('tempfile');
 
 const AWS = require('aws-sdk');
 
-const BUCKET_NAME = 'local-crate-social-platform';
+const BUCKET_NAME = process.env.bucket_name;
 const IAM_USER_KEY = process.env.aws_access_key_id;
 const IAM_USER_SECRET = process.env.aws_secret_access_key;
  
@@ -29,7 +29,7 @@ generateSignedUrl = (media_key) => {
       Bucket: BUCKET_NAME,
       signatureVersion: 'v4',
     });
-    let urlParams = {Bucket: 'local-crate-social-platform', Key: media_key};
+    let urlParams = {Bucket: process.env.bucket_name, Key: media_key};
     s3bucket.getSignedUrl('getObject', urlParams, function(err, url) {
       if(err){
         console.log(`error with getsignedurl: `, err);

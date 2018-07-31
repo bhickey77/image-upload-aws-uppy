@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@material-ui/core": "^1.4.2",
     "@uppy/aws-s3": "^0.26.0",
     "@uppy/core": "^0.26.0",
     "@uppy/react": "^0.26.0",
@@ -32,5 +33,5 @@
     "build": "react-scripts build",
     "test": "mocha",
     "eject": "react-scripts eject"
-  },
+  }
 }
