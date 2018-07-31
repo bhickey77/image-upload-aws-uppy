@@ -46,23 +46,20 @@ function uploadToSQL(req, media_url) {
     const is_marked_as_hidden = false;
     const date_created = new Date().toJSON().toString();
     const date_updated = new Date().toJSON().toString();
-    const queryText = `INSERT INTO post ("partner_id", "title", "content", "media_url", "date_created", "date_updated", "is_marked_as_hidden")
-    VALUES($1, $2, $3, $4, $5, $6, $7)`;
-    pool.query(queryText, [
-        1,
-        req.body.title,
-        req.body.content,
-        media_url,
-        date_created,
-        date_updated,
-        is_marked_as_hidden,
-    ]).then((result) => {
+    const queryText = `INSERT INTO post 
+                       ("media_url")
+                       VALUES
+                       ($1)`;
+    
+    pool.query(queryText, [media_url])
+      .then((result) => {
         console.log('back from db with:', result);
         resolve(200);
-    }).catch((error) => {
+      })
+      .catch((error) => {
         console.log('error in POST', error);
         resolve(500);
-    })
+      })
   })
 }
 

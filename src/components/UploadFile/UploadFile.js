@@ -14,6 +14,7 @@ import UploadBox from '../UploadBox/UploadBox';
 //UPLOAD STAGES
 import UploadStage1 from '../UploadStage1/UploadStage1';
 import UploadStage2 from '../UploadStage2/UploadStage2';
+import RawInputField from '../RawInputField/RawInputField';
 
 //AWS
 const AWS = require('aws-sdk');
@@ -127,7 +128,7 @@ class UploadFile extends Component {
   render() {
     return (
       <div>
-        <input type="file"/>
+        <RawInputField />
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <UploadBox setImage={this.setImage} />
 
