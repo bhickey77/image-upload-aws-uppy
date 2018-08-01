@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import sendFileToServer from '../../requests/sendFileToServer';
+import { sendFileToServer } from '../../requests/sendFormToServer';
 
 //UPPY
 import Uppy from '@uppy/core';

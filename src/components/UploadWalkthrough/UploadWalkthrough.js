@@ -14,6 +14,8 @@ import UploadBox from '../UploadBox/UploadBox';
 import UploadStage1 from '../UploadStage1/UploadStage1';
 import UploadStage2 from '../UploadStage2/UploadStage2';
 
+import { sendFileAndTextToServer } from '../../requests/sendFormToServer';
+
 //AWS
 const AWS = require('aws-sdk');
 const BUCKET_NAME = process.env.bucket_name;
@@ -24,36 +26,27 @@ class UploadWalkthrough extends Component {
   constructor(props){
     super(props);
     this.state = {
+      open: '',
       currentUploadStage: 1,
       title: '',
       content: '',
     };
   }
 
+  componentWillReceiveProps = () => {
+    this.setState({
+      ...this.state,
+      open: this.props.open,
+    })
+  }
+
+  //Dilaog box actions
   handleConfirmImage = () => {
     this.setState({ 
       ...this.state,
       currentUploadStage: 2,
      });
   };
-
-  handleChangeFor = property => event => {
-    this.setState({
-      ...this.state,
-      [property]: event.target.value,
-    })
-    console.log(this.state);
-  }
-
-  handleSubmitPost = () => {
-    this.sendPost();
-    this.setState({
-      open: false,
-      profilePictureUrl: '',
-      imageData: '',
-      currentUploadStage: 1,
-    })
-  }
 
   backToImageUpload = () => {
     this.setState({
@@ -65,7 +58,7 @@ class UploadWalkthrough extends Component {
   handleCancel = () => {
     this.setState({ 
       ...this.state,
-      walkthroughOpen: false,
+      open: false,
      });
   };
 
@@ -76,12 +69,41 @@ class UploadWalkthrough extends Component {
     })
   }
 
+  handleChangeFor = property => event => {
+    this.setState({
+      ...this.state,
+      [property]: event.target.value,
+    })
+  }
+
+
+  //submission
+  handleSubmitPost = () => {
+    this.triggerSend();
+    this.setState({
+      open: false,
+      profilePictureUrl: '',
+      imageData: '',
+      currentUploadStage: 1,
+    })
+  }
+
+  triggerSend = () => {
+    const file = this.props.file;
+    const text = {
+      title: this.state.title,
+      content: this.state.content,
+    }
+    sendFileAndTextToServer(file, text)
+  }
+
+
   render() {
     return (
       <div>
         <Dialog
-          open={this.props.open}
-          onClose={this.props.handleCancel}
+          open={this.state.open}
+          onClose={this.handleCancel}
           aria-labelledby="form-dialog-title"
         >
           {

@@ -1,0 +1,14 @@
+.uploads-container {
+    width: 40%;
+    margin: 30px;
+}
+
+.images-container {
+    width: 40%;
+    margin: 30px;
+}
+
+.container {
+    width: 100%;
+    float: left;
+}

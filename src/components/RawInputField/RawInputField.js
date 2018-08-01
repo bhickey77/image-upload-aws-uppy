@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import sendFileToServer from '../../requests/sendFileToServer';
+import { sendFileToServer } from '../../requests/sendFormToServer';
 
 //AWS
 const AWS = require('aws-sdk');

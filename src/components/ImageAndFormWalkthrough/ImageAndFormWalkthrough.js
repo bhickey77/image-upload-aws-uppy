@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+//UPPY
+import Uppy from '@uppy/core';
+import DragDrop from '@uppy/react/lib/DragDrop';
+
 import UploadWalkthrough from '../UploadWalkthrough/UploadWalkthrough';
 
 class ImageAndFormWalkthrough extends Component {
@@ -25,11 +29,11 @@ class ImageAndFormWalkthrough extends Component {
     this.uppy.on('upload', file => {
       let fileKey = Object.keys(this.uppy.state.files)[0];
       let fileFromUppy = this.uppy.state.files[fileKey].data;
-      setImage(fileFromUppy);
+      this.setImage(fileFromUppy);
     })
 
     //FILEREADER
-    reader.onloadend = () => {
+    this.reader.onloadend = () => {
       this.setState({
         ...this.state,
         imageDataUrl: this.reader.result,
