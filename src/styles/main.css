@@ -1,11 +1,14 @@
 .uploads-container {
+    display: inline-block;
     width: 40%;
     margin: 30px;
 }
 
 .images-container {
-    width: 40%;
+    display: inline-block;
+    width: 50%;
     margin: 30px;
+    vertical-align: top;
 }
 
 .container {
@@ -25,7 +28,21 @@
 }
 
 .image {
-   height: 200px;
+   height: 300px;
    width: auto;
-   margin: 20px; 
+   margin: 10px; 
+}
+
+.post {
+    float: none;
+    display: inline-block;
+}
+
+.title {
+    /* float: left; */
+    margin-left: 0;
+}
+
+.content {
+    /* float: left; */
 }

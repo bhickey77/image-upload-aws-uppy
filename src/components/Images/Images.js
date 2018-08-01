@@ -23,7 +23,18 @@ class Images extends Component {
   render() {
     return (
       <div>
-        {JSON.stringify(this.state.images)}
+        {this.state.images.map((image, index) => {
+          return (
+            <div key={index} className="post">
+              <img className="image" src={image.media_url} alt="post"/>
+              {
+                (image.title !== null || image.content !== null) &&
+                  [<span key='a' className="title">Title: {image.title}  </span>,
+                  <span key='b' className="content">  Content: {image.content}</span>]
+              }  
+            </div>
+          )
+        })}
       </div>
     );
   }

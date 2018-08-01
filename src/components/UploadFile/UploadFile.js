@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import RawInputField from '../RawInputField/RawInputField';
 import UppyDragDrop from '../UppyDragDrop/UppyDragDrop';

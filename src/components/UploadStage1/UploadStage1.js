@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 
 // MATERIAL UI
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 class UploadStage1 extends Component {
@@ -15,7 +12,7 @@ class UploadStage1 extends Component {
       <div>
         <DialogTitle id="form-dialog-title">Are you sure this is the image you would like to upload?</DialogTitle>
         <DialogContent>
-          <img className="upload-image" src={this.props.imageDataUrl} alt="Image" />          
+          <img className="upload-image" src={this.props.imageDataUrl} alt="post" />          
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleCancel} color="primary">
