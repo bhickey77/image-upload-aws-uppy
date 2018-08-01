@@ -15,6 +15,7 @@ import UploadBox from '../UploadBox/UploadBox';
 import UploadStage1 from '../UploadStage1/UploadStage1';
 import UploadStage2 from '../UploadStage2/UploadStage2';
 import RawInputField from '../RawInputField/RawInputField';
+import UppyDragDrop from '../UppyDragDrop/UppyDragDrop';
 
 //AWS
 const AWS = require('aws-sdk');
@@ -129,16 +130,17 @@ class UploadFile extends Component {
     return (
       <div>
         <RawInputField />
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <UploadBox setImage={this.setImage} />
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <UppyDragDrop />
+        {/* <UploadBox setImage={this.setImage} /> */}
 
         {/* <input type="file" name="image" onChange={this.handleUploadFile} /> */}
-        <Dialog
+        {/* <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
-        >
-        {
+        > */}
+        {/* {
           this.state.currentUploadStage === 1 &&
             <UploadStage1 
               profilePictureUrl={this.state.profilePictureUrl} 
@@ -155,7 +157,7 @@ class UploadFile extends Component {
               handleChangeFor = {this.handleChangeFor}
             />
         }
-        </Dialog>
+        </Dialog> */}
       
       </div>
     );

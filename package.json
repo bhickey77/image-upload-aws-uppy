@@ -5,10 +5,8 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@material-ui/core": "^1.4.2",
-    "@uppy/aws-s3": "^0.26.0",
     "@uppy/core": "^0.26.0",
     "@uppy/react": "^0.26.0",
-    "@uppy/tus": "^0.26.0",
     "aws-sdk": "^2.281.1",
     "axios": "^0.17.1",
     "dotenv": "^4.0.0",
