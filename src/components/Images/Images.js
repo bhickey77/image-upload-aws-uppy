@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Images extends Component {
-  triggerFileSend = event => {
-    const file = event.target.files[0];
-    sendFileToServer(file);
+  constructor(props){
+    super(props);
+    this.state = {
+      images: [],
+    }
+  }
+  componentDidMount = () => {
+    axios.get('api/post')
+      .then(response => {
+        this.setState({
+          images: response.data
+        })
+      })
+      .catch(error => {
+        console.log('Error getting images: ', error);
+      })
   }
 
   render() {
     return (
       <div>
-        <input type="file" onChange={this.triggerFileSend}/>
+        {JSON.stringify(this.state.images)}
       </div>
     );
   }

@@ -8,7 +8,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import UploadBox from '../UploadBox/UploadBox';
 
 //UPLOAD STAGES
 import UploadStage1 from '../UploadStage1/UploadStage1';
