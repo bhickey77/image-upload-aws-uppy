@@ -6,10 +6,16 @@ const BUCKET_NAME     = process.env.bucket_name;
 const IAM_USER_KEY    = process.env.aws_access_key_id;
 const IAM_USER_SECRET = process.env.aws_secret_access_key;
  
-async function uploadPost(req, res) {
+const uploadPost = async (req, res) => {
   let media_key = await uploadToS3(req.file, res);
   let media_url = await generateSignedUrl(media_key, res);
   await uploadToSQL(req, media_url, res);
+}
+
+const uploadPostWithText = async (req, res) => {
+  let media_key = await uploadToS3(req.file, res);
+  let media_url = await generateSignedUrl(media_key, res);
+  await uploadToSQLWithText(req, media_url, res);
 }
 
 
@@ -67,9 +73,6 @@ function generateSignedUrl (media_key, res) {
 
 function uploadToSQL(req, media_url, res) {
   return new Promise(resolve => {
-    const is_marked_as_hidden = false;
-    const date_created = new Date().toJSON().toString();
-    const date_updated = new Date().toJSON().toString();
     const queryText = `INSERT INTO post 
                         ("media_url")
                         VALUES
@@ -87,4 +90,25 @@ function uploadToSQL(req, media_url, res) {
   })
 }
 
-module.exports = uploadPost;
+function uploadToSQLWithText(req, media_url, res) {
+  return new Promise(resolve => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const queryText = `INSERT INTO post 
+                        ("media_url", "title", "content")
+                        VALUES
+                        ($1, $2, $3)`;
+    
+    pool.query(queryText, [media_url, title, content])
+      .then((result) => {
+        console.log('back from db with:', result);
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log('error in POST', error);
+        res.sendStatus(500);
+      })
+  })
+}
+
+module.exports = {uploadPost, uploadPostWithText};

@@ -15,10 +15,10 @@ class UploadStage2 extends Component {
       <div>
         <DialogTitle id="form-dialog-title">Enter post details</DialogTitle>
         <DialogContent>
-          <img className="imageForDetails" src={this.props.profilePictureUrl} alt="profilePictureUrl" />          
+          <img className="upload-image-for-details" src={this.props.imageDataUrl} alt="profilePictureUrl" />          
           <TextField
               autoFocus
-              onChange={this.props.handleChangeFor('postTitle')}
+              onChange={this.props.handleChangeFor('title')}
               margin="dense"
               id="postTitle"
               label="Post Title"
@@ -27,7 +27,7 @@ class UploadStage2 extends Component {
             />
           <TextField
               autoFocus
-              onChange={this.props.handleChangeFor('postContent')}
+              onChange={this.props.handleChangeFor('content')}
               margin="dense"
               id="content"
               label="Post Content"

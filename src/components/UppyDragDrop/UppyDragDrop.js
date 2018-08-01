@@ -27,6 +27,8 @@ class UppyDragDrop extends Component {
     this.uppy.on('upload', file => {
       let fileKey = Object.keys(this.uppy.state.files)[0];
       let fileFromUppy = this.uppy.state.files[fileKey].data;
+      console.log(`uploading`);
+    
       sendFileToServer(fileFromUppy);
     })
   }
@@ -34,7 +36,14 @@ class UppyDragDrop extends Component {
   render() {
     return (
       <div>
-        <DragDrop uppy={this.uppy} />
+        <DragDrop 
+          uppy={this.uppy}
+          locale={{
+            strings: {
+              chooseFile: 'Pick a new avatar'
+            }
+          }}
+        />
       </div>
     );
   }

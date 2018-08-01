@@ -5,6 +5,8 @@ import RawInputField from '../RawInputField/RawInputField';
 import UppyDragDrop from '../UppyDragDrop/UppyDragDrop';
 import ImageAndFormWalkthrough from '../ImageAndFormWalkthrough/ImageAndFormWalkthrough';
 
+import Images from '../Images/Images';
+
 class UploadFile extends Component {
   render() {
     return (
@@ -20,7 +22,7 @@ class UploadFile extends Component {
           <ImageAndFormWalkthrough />
         </div>
         <div className="images-container">
-          
+          <Images />
         </div>
       </div>
     );

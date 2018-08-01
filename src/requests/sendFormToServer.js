@@ -3,7 +3,7 @@ import axios from 'axios';
 export const sendFileToServer = file => {
     const data = new FormData();
     data.append('file', file);
-    axios.post('api/image', data, { headers: {
+    axios.post('api/post/image', data, { headers: {
         'accept': 'application/json',
         'Accept-Language': 'en-US,en;q=0.8',
         'Content-Type': file.type,
@@ -19,10 +19,12 @@ export const sendFileToServer = file => {
 export const sendFileAndTextToServer = (file, text) => {
     const data = new FormData();
     data.append('file', file);
-    for(const [key, value] of text.entries()){
+    console.log({text});
+    
+    for(const [key, value] of Object.entries(text)){
         data.append(key, value);
     }
-    axios.post('api/imageAndText', data, { headers: {
+    axios.post('api/post/imageAndText', data, { headers: {
         'accept': 'application/json',
         'Accept-Language': 'en-US,en;q=0.8',
         'Content-Type': file.type,

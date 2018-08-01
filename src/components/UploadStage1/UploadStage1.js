@@ -15,10 +15,10 @@ class UploadStage1 extends Component {
       <div>
         <DialogTitle id="form-dialog-title">Are you sure this is the image you would like to upload?</DialogTitle>
         <DialogContent>
-          <img className="uploadImage" src={this.props.profilePictureUrl} alt="profilePictureUrl" />          
+          <img className="upload-image" src={this.props.imageDataUrl} alt="Image" />          
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.props.handlePostCancel} color="primary">
+          <Button onClick={this.props.handleCancel} color="primary">
             No, cancel Post Creation
           </Button>
           <Button onClick={this.props.handleConfirmImage} color="primary">

@@ -110,7 +110,7 @@ class UploadWalkthrough extends Component {
             this.state.currentUploadStage === 1 &&
               <UploadStage1 
                 imageDataUrl={this.props.imageDataUrl} 
-                handleCancel = {this.props.handleCancel}
+                handleCancel = {this.handleCancel}
                 handleConfirmImage = {this.handleConfirmImage}
               />
           }
