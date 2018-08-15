@@ -1,8 +1,5 @@
 # Image Uploading with AWS S3, Uppy, React, Node PostgreSQL
-I created this example URL for a lecture that I gave on image handling. I use a combination of the above technologies to hand uploading an image, saving the image on AWS S3 and showing the image with a generated signed URL.
-
-## Uppy Installs
-```npm i @uppy/core @uppy/react```
+I created this example URL for a lecture that I gave on image handling. I use a combination of the above technologies to handle uploading an image, saving the image on AWS S3 and showing the image with a generated signed URL.
 
 ## Database
 I am using PostgreSQL. The database name is set to image_upload in the pool.js currently. Change this to something relevant to your project. Create a database with your choosen database name and run the query in the database.sql file.
