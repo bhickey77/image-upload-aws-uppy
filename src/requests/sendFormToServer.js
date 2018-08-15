@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const verbose = false; // turns on and off console.logs
+
 export const sendFileToServer = file => {
     const data = new FormData();
     data.append('file', file);
@@ -9,17 +11,17 @@ export const sendFileToServer = file => {
         'Content-Type': file.type,
     }})
     .then(response => {
-        console.log('successfully uploaded to the S3: ', response);
+        verbose && console.log('successfully uploaded to the S3: ', response);
     })
     .catch(error => {
-        console.log('error uploading file: ', error);
+        verbose && console.log('error uploading file: ', error);
     })
 }
 
 export const sendFileAndTextToServer = (file, text) => {
     const data = new FormData();
     data.append('file', file);
-    console.log({text});
+    verbose && console.log({text});
     
     for(const [key, value] of Object.entries(text)){
         data.append(key, value);
@@ -30,9 +32,9 @@ export const sendFileAndTextToServer = (file, text) => {
         'Content-Type': file.type,
     }})
     .then(response => {
-        console.log('successfully uploaded to the S3: ', response);
+        verbose && console.log('successfully uploaded to the S3: ', response);
     })
     .catch(error => {
-        console.log('error uploading file: ', error);
+        verbose && console.log('error uploading file: ', error);
     })
 }

@@ -14,16 +14,13 @@ class UppyDragDrop extends Component {
     restrictions: { maxNumberOfFiles: 1 },
     autoProceed: true
   })
-
-  componentDidMount = () => {
-    this.uppy.on('upload', file => {
+    .on('upload', file => {
       let fileKey = Object.keys(this.uppy.state.files)[0];
       let fileFromUppy = this.uppy.state.files[fileKey].data;
       console.log(`uploading`);
     
       sendFileToServer(fileFromUppy);
     })
-  }
 
   render() {
     return (

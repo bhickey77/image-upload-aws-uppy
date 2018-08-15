@@ -21,25 +21,19 @@ class ImageAndFormWalkthrough extends Component {
     restrictions: { maxNumberOfFiles: 1 },
     autoProceed: true
   })
-
-  reader = new FileReader();
-
-  componentDidMount = () => {
-    //UPPY
-    this.uppy.on('upload', file => {
+    .on('upload', file => {
       let fileKey = Object.keys(this.uppy.state.files)[0];
       let fileFromUppy = this.uppy.state.files[fileKey].data;
       this.setImage(fileFromUppy);
     })
 
-    //FILEREADER
-    this.reader.onloadend = () => {
+  reader = new FileReader()
+    .onloadend = () => {
       this.setState({
         ...this.state,
         imageDataUrl: this.reader.result,
       })
     }
-  }
 
   setImage = file => {
     //reads the file into a local data url

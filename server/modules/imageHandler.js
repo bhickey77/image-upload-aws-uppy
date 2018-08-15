@@ -6,19 +6,21 @@ const BUCKET_NAME     = process.env.bucket_name;
 const IAM_USER_KEY    = process.env.aws_access_key_id;
 const IAM_USER_SECRET = process.env.aws_secret_access_key;
  
+const verbose = false; //turns on and off console.logs
+
 const uploadPost = async (req, res) => {
   let media_key = await uploadToS3(req.file, res);
-  await uploadToSQL(req, media_key, res);
+  uploadToSQL(req, media_key, res);
 }
 
 const uploadPostWithText = async (req, res) => {
   let media_key = await uploadToS3(req.file, res);
-  await uploadToSQLWithText(req, media_key, res);
+  uploadToSQLWithText(req, media_key, res);
 }
 
 const generateSignedUrls = async (res, rows) => {
     const newRows = await addSignedUrls(rows);
-    console.log({newRows});
+    verbose && console.log({newRows});
     res.send(newRows);
 }
 
@@ -41,18 +43,19 @@ function generateSignedUrl(key) {
       secretAccessKey: IAM_USER_SECRET,
       Bucket: BUCKET_NAME,
       signatureVersion: 'v4',
+      region: 'us-east-1',
     });
     let urlParams = {Bucket: 'local-crate-social-platform', Key: key};
-    console.log({urlParams});
+    verbose && console.log({urlParams});
     s3bucket.getSignedUrl('getObject', urlParams, function(error, url) {
       if(error){
-        console.log(error);
+        verbose && console.log(error);
         resolve('');
       } else {
-        console.log('url in getsigned response: ', url);
+        verbose && console.log('url in getsigned response: ', url);
         revolve(url);
       }
-      console.log(url, error);
+      verbose && console.log(url, error);
       
     })
   })
@@ -62,12 +65,13 @@ function uploadToS3(file, res) {
   return new Promise(resolve => {
     fs.readFile(file.path)
       .then(data => {
-        console.log(`file read: `, data);
+        verbose && console.log(`file read: `, data);
         let s3bucket = new AWS.S3({
           accessKeyId: IAM_USER_KEY,
           secretAccessKey: IAM_USER_SECRET,
           Bucket: BUCKET_NAME,
           signatureVersion: 'v4',
+          region: 'us-east-1',
         });
         s3bucket.createBucket(function () {
           var params = {
@@ -98,11 +102,11 @@ function uploadToSQL(req, media_key, res) {
     
     pool.query(queryText, [media_key])
       .then((result) => {
-        console.log('back from db with:', result);
+        verbose && console.log('back from db with:', result);
         res.sendStatus(200);
       })
       .catch((error) => {
-        console.log('error in POST', error);
+        verbose && console.log('error in POST', error);
         res.sendStatus(500);
       })
   })
@@ -119,11 +123,11 @@ function uploadToSQLWithText(req, media_key, res) {
     
     pool.query(queryText, [media_key, title, content])
       .then((result) => {
-        console.log('back from db with:', result);
+        verbose && console.log('back from db with:', result);
         res.sendStatus(200);
       })
       .catch((error) => {
-        console.log('error in POST', error);
+        verbose && console.log('error in POST', error);
         res.sendStatus(500);
       })
   })
