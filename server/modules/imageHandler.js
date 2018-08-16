@@ -6,7 +6,7 @@ const BUCKET_NAME     = process.env.bucket_name;
 const IAM_USER_KEY    = process.env.aws_access_key_id;
 const IAM_USER_SECRET = process.env.aws_secret_access_key;
  
-const verbose = false; //turns on and off console.logs
+const verbose = true; //turns on and off console.logs
 
 const uploadPost = async (req, res) => {
   let media_key = await uploadToS3(req.file, res);
