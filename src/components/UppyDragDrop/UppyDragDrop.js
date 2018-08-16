@@ -8,6 +8,8 @@ import DragDrop from '@uppy/react/lib/DragDrop';
 // other Uppy components that could be used as an alternative. Other components
 // might require a different approach than outlined here.
 
+const verbose = false; //toggle logs
+
 class UppyDragDrop extends Component {
   uppy = Uppy({
     meta: { type: 'profilePicture' },
@@ -17,7 +19,7 @@ class UppyDragDrop extends Component {
     .on('upload', file => {
       let fileKey = Object.keys(this.uppy.state.files)[0];
       let fileFromUppy = this.uppy.state.files[fileKey].data;
-      console.log(`uploading`);
+      verbose && console.log(`uploading`);
     
       sendFileToServer(fileFromUppy);
     })

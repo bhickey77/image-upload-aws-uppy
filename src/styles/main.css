@@ -1,12 +1,12 @@
 .uploads-container {
     display: inline-block;
-    width: 40%;
+    width: 20%;
     margin: 30px;
 }
 
 .images-container {
     display: inline-block;
-    width: 50%;
+    width: 70%;
     margin: 30px;
     vertical-align: top;
 }
