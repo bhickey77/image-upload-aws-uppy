@@ -45,7 +45,7 @@ function generateSignedUrl(key) {
       signatureVersion: 'v4',
       region: 'us-east-1',
     });
-    let urlParams = {Bucket: 'local-crate-social-platform', Key: key};
+    let urlParams = {Bucket: BUCKET_NAME, Key: key};
     verbose && console.log({urlParams});
     s3bucket.getSignedUrl('getObject', urlParams, function(error, url) {
       if(error){
